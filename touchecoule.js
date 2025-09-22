@@ -22,3 +22,7 @@ function afficherGrille(grille: string[][], hideShips: boolean): void {
   }
   console.log(resultat);
 }
+
+function bateau(grille: string[][], x: number, y: number): void {
+  grille[x][y] = "B";
+}
