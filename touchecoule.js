@@ -1,0 +1,12 @@
+const taille = 5;
+
+function TABLEAU(): string[][] {
+  const grille: string[][] = [];
+  for (let i = 0; i < taille; i++) {
+    grille[i] = [];
+    for (let j = 0; j < taille; j++) {
+      grille[i][j] = "~";
+    }
+  }
+  return grille;
+}
