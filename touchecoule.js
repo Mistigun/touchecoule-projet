@@ -76,6 +76,11 @@ function game(): void {
   while (true) {
     tirer(enemy);
 
+    if (couler(enemy)) {
+      alert("Tous les bateaux sont coulés !");
+      break; 
+    }
+  }
     
 }
 game();
