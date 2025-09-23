@@ -11,11 +11,11 @@ function TABLEAU(): string[][] {
   return grille;
 }
 
-function afficherGrille(grille: string[][], hideShips: boolean): void {
+function afficherGrille(grille: string[][], bateauCache: boolean): void {
   let resultat = "";
   for (let i = 0; i < taille; i++) {
     for (let j = 0; j < taille; j++) {
-      if (hideShips && grille[i][j] === "B") resultat += "~ ";
+      if (bateauCache && grille[i][j] === "B") resultat += "~ ";
       else resultat += grille[i][j] + " ";
     }
     resultat += "\n";
@@ -26,7 +26,7 @@ function afficherGrille(grille: string[][], hideShips: boolean): void {
 function bateau(grille: string[][], x: number, y: number): void {
   grille[x][y] = "B";
 }
-function tirer(enemyGrid: string[][]): void {
+function tirer(grilleBot: string[][]): void {
   let x: number, y: number;
 
   while (true) {
@@ -41,17 +41,17 @@ function tirer(enemyGrid: string[][]): void {
     alert("Coordonnées invalides !");
   }
 
-  if (enemyGrid[x][y] === "B") {
-    enemyGrid[x][y] = "X";
+  if (grilleBot[x][y] === "B") {
+    grilleBot[x][y] = "X";
     alert(`Touché en (${x},${y}) !`);
-  } else if (enemyGrid[x][y] === "~") {
-    enemyGrid[x][y] = "O";
+  } else if (grilleBot[x][y] === "~") {
+    grilleBot[x][y] = "O";
     alert(`À l’eau en (${x},${y})...`);
   } else {
     alert(`Déjà tiré en (${x},${y}) !`);
   }
 
-  afficherGrille(enemyGrid, true);
+  afficherGrille(grilleBot, true);
 }
 
 function couler(grille: string[][]): boolean {
@@ -64,19 +64,19 @@ function couler(grille: string[][]): boolean {
 }
 
 function game(): void {
-  const enemy = TABLEAU();
+  const bot = TABLEAU();
 
  
-  bateau(enemy, 1, 1);
-  bateau(enemy, 3, 4);
+  bateau(bot, 1, 1);
+  bateau(bot, 3, 4);
 
   alert("Le jeu commence");
-  afficherGrille(enemy, true);
+  afficherGrille(bot, true);
 
   while (true) {
-    tirer(enemy);
+    tirer(bot);
 
-    if (couler(enemy)) {
+    if (couler(bot)) {
       alert("Tous les bateaux sont coulés !");
       break; 
     }
